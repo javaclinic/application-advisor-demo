@@ -22,11 +22,11 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.
                 authorizeHttpRequests((authz) ->
-                        authz
-                                .requestMatchers("/cashcards/**").hasRole("CARD-OWNER")
-                                .requestMatchers("/h2-console/**").permitAll()
-                )
-                .csrf().disable()
+                authz
+                        .requestMatchers("/cashcards/**").hasRole("CARD-OWNER")
+                        .requestMatchers("/h2-console/**").permitAll()
+        )
+        .csrf(csrf -> csrf.disable())
                 .httpBasic(withDefaults());
         return http.build();
     }
